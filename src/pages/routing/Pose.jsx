@@ -75,12 +75,9 @@ const Pose = () => {
 
                 inputs.push(position_x);
                 inputs.push(position_y);
-
-                if(brainState){
-                    inputs.push(position_x);
-                    inputs.push(position_y);
-                }
             }
+
+            console.log(inputs.length);
 
             if(brainState){
                 brain.addData(inputs, key_target);
@@ -123,15 +120,6 @@ const Pose = () => {
 
     // camara&canvasリサイズ関数
     const resizeForAll = () => {
-        // リアルカメラサイズ
-        // console.log(videoRef.current.clientHeight, videoRef.current.clientWidth);
-
-        // ???
-        // console.log(videoRef.current.videoHeight, videoRef.current.videoWidth);
-
-        // poseNetに送るカメラサイズ（動的に変更しないといけない）
-        // console.log(videoRef.current.height, videoRef.current.width);
-
         // videoRef変更
         videoRef.current.height = videoRef.current.clientHeight;
         videoRef.current.width = videoRef.current.clientWidth;
@@ -168,11 +156,11 @@ const Pose = () => {
 
         // brain.loadData('save/save_data.json', () => {
         //     console.log('Load json!');
-        // })
+        // });
 
         brain.load(modelInfo, () => {
             console.log('pose classification ready!');
-        })
+        });
     }
 
     // データ収集
@@ -207,6 +195,7 @@ const Pose = () => {
 
     // ポーズ出力
     const poseOutput = (error, results) => {
+        console.log(error);
         try{
             console.log(results[0]);
             if(poseState === results[0].label){
