@@ -1,13 +1,12 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Default from './pages/Default';
+import Default from 'pages/Default';
 
-import ScrollToTop from "./script/ScrollToTop";
+import ScrollToTop from "script/ScrollToTop";
 
-class App extends React.Component{
-  render() {
-    return (
+const App = () => {
+    return(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <ScrollToTop>
                 <Switch>
@@ -15,8 +14,7 @@ class App extends React.Component{
                 </Switch>
             </ScrollToTop>
         </BrowserRouter>
-    );
-  }
+    )
 }
 
 export default App;

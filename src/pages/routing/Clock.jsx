@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 
-import '../../styles/clock.scss';
+import 'styles/clock.scss';
+import {Card, CardContent, CardMedia, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: theme.spacing(2),
+        margin: theme.spacing(2),
         textAlign: 'center',
     },
     EnablePaper: {
@@ -22,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     },
     LinkATag: {
         textDecoration: 'none',
+    },
+    card: {
+        padding: theme.spacing(2),
+        backgroundColor: '#FFFAFA'
     }
 }));
 
@@ -40,42 +45,88 @@ const Clock = () => {
     }
 
     const [time, setTime] = useState(clock);
-    const [alarm, setAlarm] = useState('Disable');
     useEffect(() => {
         setInterval(() => {
             setTime(clock);
         }, 1000);
     }, []);
 
-    const AlarmClick = () => {
-        setAlarm('Alarm!!');
-    }
-
     return(
         <div className="Clock">
             <div className={classes.root}>
                 <Grid container alignItems="center" justify="center" spacing={2}>
-                    <Grid item xs={2}>
-                        <Paper className={classes.EnablePaper}>
-                            <p>
-                                {alarm}
-                            </p>
-                        </Paper>
-                    </Grid>
                     <Grid item xs={12}>
-                        <Paper className={classes.paper + " " + "ClockPaper"}>
+                        <Paper className={classes.paper + " ClockPaper"}>
                             <h1>
                                 {time}
                             </h1>
                         </Paper>
                     </Grid>
-                    <Grid item xs={2}>
-                        <Link to="/setting" className={classes.LinkATag}>
-                            <Button color="secondary">Setting</Button>
+                </Grid>
+                <Grid container alignItems="center" justify="center" spacing={3}>
+                    <Grid item xs={6} sm={5}>
+                        <Link to={{
+                            pathname: '/pose',
+                            input_pose: 'squat'
+                        }} className={classes.LinkATag}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    component="img"
+                                    image="png/squat.png"
+                                />
+                                <CardContent>
+                                    <Typography variant="h6">
+                                        Squat
+                                    </Typography>
+                                </CardContent>
+                            </Card>
                         </Link>
                     </Grid>
-                    <Grid item xs={2}>
-                        <Button color="secondary" onClick={AlarmClick}>Test Alarm</Button>
+                    <Grid item xs={6} sm={5}>
+                        <Link to={{
+                            pathname: '/pose',
+                            input_pose: 'pushup'
+                        }} className={classes.LinkATag}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    component="img"
+                                    image="png/pushup.png"
+                                />
+                                <CardContent>
+                                    <Typography variant="h6">
+                                        PushUp
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    </Grid>
+                </Grid>
+                <Grid container alignItems="center" justify="center" spacing={3}>
+                    <Grid item xs={6} sm={5}>
+                        <Card className={classes.card}>
+                            <CardMedia
+                                component="img"
+                                image="png/graph.png"
+                            />
+                            <CardContent>
+                                <Typography variant="h6">
+                                    Graph
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={6} sm={5}>
+                        <Card className={classes.card}>
+                            <CardMedia
+                                component="img"
+                                image="png/setting.png"
+                            />
+                            <CardContent>
+                                <Typography variant="h6">
+                                    Setting
+                                </Typography>
+                            </CardContent>
+                        </Card>
                     </Grid>
                 </Grid>
             </div>

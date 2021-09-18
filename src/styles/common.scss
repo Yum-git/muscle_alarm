@@ -1,7 +1,7 @@
 body{
-  background: linear-gradient(90deg,#0e0f0f 0,#1f2021 30%,#2b2d2e 57%,#2d2f30 64%,#2d2f30);
+  // background: linear-gradient(90deg,#0e0f0f 0,#1f2021 30%,#2b2d2e 57%,#2d2f30 64%,#2d2f30);
   .header{
-    color: aliceblue;
+    color: black;
     height: 60px;
     width: 100%;
     display: flex;
@@ -9,7 +9,7 @@ body{
     justify-content: center;
   }
   .footer{
-    color: aliceblue;
+    color: black;
     width: 100%;
     height: 60px;
     display: flex;
