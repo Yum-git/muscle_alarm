@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Clock = () => {
+const Main = () => {
     const classes = useStyles();
 
     const clock = () => {
@@ -133,4 +133,4 @@ const Clock = () => {
         </div>
     )
 }
-export default Clock;
+export default Main;

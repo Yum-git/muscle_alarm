@@ -8,7 +8,7 @@ import Header from "pages/common/Header";
 import Footer from "pages/common/Footer";
 
 // Roting枠
-import Clock from "pages/routing/Clock";
+import Main from "pages/routing/Main";
 import Setting from "pages/routing/Setting";
 import Pose from "pages/routing/Pose";
 
@@ -25,7 +25,7 @@ const Default = () => {
             <main>
                 <Container fixed>
                     <Switch>
-                        <Route exact path="/" component={Clock} />
+                        <Route exact path="/" component={Main} />
                         <Route path="/setting" component={Setting} />
                         <Route path="/pose" component={Pose} />
                         <Route render={() => <p>not found!</p>} />
