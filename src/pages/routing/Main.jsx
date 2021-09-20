@@ -62,6 +62,13 @@ const Main = () => {
                             </h1>
                         </Paper>
                     </Grid>
+                    <Grid item xs={12}>
+                        <Link to={{
+                            pathname: '/train'
+                        }} className={classes.LinkATag}>
+                            Training
+                        </Link>
+                    </Grid>
                 </Grid>
                 <Grid container alignItems="center" justify="center" spacing={3}>
                     <Grid item xs={6} sm={5}>

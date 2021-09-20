@@ -12,6 +12,9 @@ import Main from "pages/routing/Main";
 import Setting from "pages/routing/Setting";
 import Pose from "pages/routing/Pose";
 
+// 学習枠
+import Train from "pages/routing/Train";
+
 // scss
 import "styles/common.scss";
 
@@ -28,6 +31,7 @@ const Default = () => {
                         <Route exact path="/" component={Main} />
                         <Route path="/setting" component={Setting} />
                         <Route path="/pose" component={Pose} />
+                        <Route path="/train" component={Train} />
                         <Route render={() => <p>not found!</p>} />
                     </Switch>
                 </Container>
