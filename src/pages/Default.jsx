@@ -11,6 +11,7 @@ import Footer from "pages/common/Footer";
 import Main from "pages/routing/Main";
 import Setting from "pages/routing/Setting";
 import Pose from "pages/routing/Pose";
+import Graph from "pages/routing/Graph";
 
 // 学習枠
 import Train from "pages/routing/Train";
@@ -32,6 +33,7 @@ const Default = () => {
                         <Route path="/setting" component={Setting} />
                         <Route path="/pose" component={Pose} />
                         <Route path="/train" component={Train} />
+                        <Route path="/graph" component={Graph} />
                         <Route render={() => <p>not found!</p>} />
                     </Switch>
                 </Container>
