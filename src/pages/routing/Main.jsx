@@ -110,17 +110,21 @@ const Main = () => {
                 </Grid>
                 <Grid container alignItems="center" justify="center" spacing={3}>
                     <Grid item xs={6} sm={5}>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                component="img"
-                                image="png/graph.png"
-                            />
-                            <CardContent>
-                                <Typography variant="h6">
-                                    Graph
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                        <Link to={{
+                            pathname: '/graph'
+                        }} className={classes.LinkATag}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    component="img"
+                                    image="png/graph.png"
+                                />
+                                <CardContent>
+                                    <Typography variant="h6">
+                                        Graph
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     </Grid>
                     <Grid item xs={6} sm={5}>
                         <Card className={classes.card}>
