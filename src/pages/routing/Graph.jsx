@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import {Breadcrumbs, Link, Paper, Typography} from "@material-ui/core";
+import {Breadcrumbs, Link, Paper, Tab, Tabs, Typography} from "@material-ui/core";
 import {ArgumentAxis, Chart, LineSeries, ValueAxis, BarSeries} from "@devexpress/dx-react-chart-material-ui";
 import React, {useEffect, useState} from "react";
 import {Animation} from "@devexpress/dx-react-chart";
@@ -31,14 +31,14 @@ const Graph = () => {
         { argument: "01-09", value: 10 },
         { argument: "01-10", value: 30 }
     ]);
-    const [outputState, setOutputState] = useState("squat_data");
+    const [outputState, setOutputState] = useState(0);
 
-    const bread_change = (change_state) => {
-        setOutputState(change_state);
+    const bread_change = (event, newValue) => {
+        setOutputState(newValue);
     };
 
     useEffect(() => {
-        if(outputState === "squat_data"){
+        if(outputState === 0){
             setData([
                 { argument: "01-03", value: 20 },
                 { argument: "01-04", value: 10 },
@@ -69,37 +69,19 @@ const Graph = () => {
         <div className="Graph-Container">
             <div className={classes.root}>
                 <Grid container alignItems="center" justify="center" spacing={2}>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}>
-                            <Typography variant="h2">
-                                Graph
-                            </Typography>
+                    <Grid item xs={12} className={classes.paper}>
+                        <Paper >
+                            <Tabs
+                                value={outputState}
+                                onChange={bread_change}
+                                indicatorColor="primary"
+                                textColor="primary"
+                                centered
+                                >
+                                <Tab label="Squat" />
+                                <Tab label="PushUp" />
+                            </Tabs>
                         </Paper>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Breadcrumbs aria-label="breadcrumb">
-                            {outputState === "squat_data" ?
-                                <>
-                                    <Link color="textPrimary" onClick={() => bread_change("squat_data")}>
-                                        Squat
-                                    </Link>
-                                    /
-                                    <Link color="inherit" onClick={() => bread_change("pushup_data")}>
-                                        PushUp
-                                    </Link>
-                                </>
-                                :
-                                <>
-                                    <Link color="inherit" onClick={() => bread_change("squat_data")}>
-                                        Squat
-                                    </Link>
-                                    /
-                                    <Link color="textPrimary" onClick={() => bread_change("pushup_data")}>
-                                        PushUp
-                                    </Link>
-                                </>
-                            }
-                        </Breadcrumbs>
                     </Grid>
                     <Grid item xs={12}>
                         <Paper>
