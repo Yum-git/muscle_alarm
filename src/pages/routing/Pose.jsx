@@ -43,6 +43,9 @@ const Pose = () => {
     const [poseCount, setPoseCount] = useState(0.0);
     const [poseType, setPoseType] = useState('default');
 
+    // プッシュ時の効果音 pathで指定
+    const push_sound = new Audio('audio/push_2.mp3');
+
     // 幅のリサイズ用変数　保留
     // const [aspectRation, setAspectRation] = useState(1.25);
     // const { width, height } = useWindowSize();
@@ -161,6 +164,10 @@ const Pose = () => {
                 if(500 < poseTimeState && poseType !== poseState){
                     setPoseCount((poseCount) => poseCount + 0.5);
                     setPoseType(poseState);
+
+                    if(!(parseInt(poseCount, 10) === poseCount)){
+                        push_sound.play();
+                    }
                 }
             }else{
                 setPoseTimeState(0);
