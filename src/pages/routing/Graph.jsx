@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import {Breadcrumbs, Link, Paper, Typography} from "@material-ui/core";
 import {ArgumentAxis, Chart, LineSeries, ValueAxis, BarSeries} from "@devexpress/dx-react-chart-material-ui";
 import React, {useEffect, useState} from "react";
+import {Animation} from "@devexpress/dx-react-chart";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         margin: theme.spacing(2),
         textAlign: 'center',
-    },
-    breadcrumbs: {
-        textAlign: 'center'
     }
 }));
 
@@ -79,7 +77,7 @@ const Graph = () => {
                         </Paper>
                     </Grid>
                     <Grid item xs={12}>
-                        <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumbs}>
+                        <Breadcrumbs aria-label="breadcrumb">
                             {outputState === "squat_data" ?
                                 <>
                                     <Link color="textPrimary" onClick={() => bread_change("squat_data")}>
@@ -117,6 +115,8 @@ const Graph = () => {
                                     valueField="value"
                                     argumentField="argument"
                                 />
+
+                                <Animation />
                             </Chart>
                         </Paper>
                     </Grid>
