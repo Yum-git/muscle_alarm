@@ -156,12 +156,19 @@ const Train = () => {
         brain.saveData('save_data.json', () => {
             console.log("saveData!!");
         });
+    };
+
+    // データ読み込み
+    const dataLoad = () => {
+        brain.loadData('save/save_data.json', () => {
+            console.log("LoadData!!");
+        });
     }
 
     // データ学習
     const dataTraining = () => {
         // 学習データロード
-        brain.loadData('save/save_data.json', () => {
+        brain.loadData('save/save_data.json.json', () => {
             console.log('Load json!');
 
             // 正則化&トレーニング
@@ -220,6 +227,9 @@ const Train = () => {
                         </Button>
                         <Button onClick={dataSave} variant="outlined" color="primary">
                             DataSave
+                        </Button>
+                        <Button onClick={dataLoad} variant="outlined" color="primary">
+                            DataLoad
                         </Button>
                         <Button onClick={dataTraining} variant="outlined" color="primary">
                             DataTraining
