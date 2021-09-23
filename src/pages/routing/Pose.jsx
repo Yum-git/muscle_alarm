@@ -143,9 +143,9 @@ const Pose = () => {
         brain = ml5.neuralNetwork(options);
 
         const modelInfo = {
-            model: 'model/squat/model.json',
-            metadata: 'model/squat/model_meta.json',
-            weights: 'model/squat/model.weights.bin'
+            model: 'model/squat_add/model.json',
+            metadata: 'model/squat_add/model_meta.json',
+            weights: 'model/squat_add/model.weights.bin'
         };
 
         brain.load(modelInfo, () => {
@@ -204,7 +204,7 @@ const Pose = () => {
                 <Grid container alignItems="center" justify="center" spacing={2}>
                     <Grid item xs={12}>
                         <Typography variant="h1">
-                            {poseState} {parseInt(poseCount, 10)}
+                            {parseInt(poseCount, 10)} {parseInt(poseCount, 10) * 0.4}kcal
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
