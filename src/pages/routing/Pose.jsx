@@ -7,6 +7,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Button, CircularProgress, Typography} from "@material-ui/core";
 import {useWindowSize} from "react-use";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
 
 let classifier;
 let poses;
@@ -153,6 +154,24 @@ const Pose = () => {
         });
     }
 
+    const poseNetSave  = () => {
+        axios.post("http://localhost:3000/save", {
+            "PoseName": "Squat",
+            "PoseCount": parseInt(poseCount, 10)
+        }).then(
+            response => {
+                console.log(response.data);
+            }
+        ).catch(
+            err => {
+                console.log(err);
+            }
+        );
+
+        setPoseCount(0);
+        console.log("Save Count!");
+    };
+
     // ポーズ出力
     const poseOutput = (error, results) => {
         console.log(error);
@@ -219,6 +238,9 @@ const Pose = () => {
                     <Grid item xs={12}>
                         <Button onClick={poseNetPlay} variant="outlined" color="secondary">
                             Start Count
+                        </Button>
+                        <Button onClick={poseNetPlay} variant="outlined" color="secondary">
+                            Save Count
                         </Button>
                     </Grid>
                 </Grid>
