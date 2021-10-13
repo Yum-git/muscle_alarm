@@ -2,6 +2,7 @@ import React from "react";
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import GoogleLogin from "react-google-login";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+    },
+    LinkATag: {
+        textDecoration: 'none',
+        color: "white"
     },
 }));
 
@@ -26,7 +31,7 @@ const Header = () => {
         <AppBar position="static">
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
-                    PoseNet Muscle App
+                    <Link to="/" className={classes.LinkATag}>PoseNet Muscle App</Link>
                 </Typography>
                 <GoogleLogin clientId={process.env.REACT_APP_CLIENT_ID}
                              buttonText="Login"
