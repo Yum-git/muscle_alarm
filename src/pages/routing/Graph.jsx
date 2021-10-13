@@ -29,11 +29,14 @@ const Graph = () => {
         setOutputState(newValue);
     };
 
-    const oldCountGet  = async (PoseName) => {
-         await axios.get("http://localhost:8000/counts", {
-            params:{
-                "PoseName": PoseName
-            }
+    const CountGet = async (PoseName) => {
+         await axios.get("http://localhost:8000/result", {
+             params:{
+                 "pose": PoseName
+             },
+             headers: {
+                 Authorization: `Bearer aiueo`,
+             }
         }).then(
             response => {
                 setData(response.data.results);
@@ -47,10 +50,10 @@ const Graph = () => {
 
     useEffect(() => {
         if(outputState === 0){
-            oldCountGet("Squat");
+            CountGet("Squat");
         }
         else{
-            oldCountGet("PushUp");
+            CountGet("PushUp");
         }
     }, [outputState]);
 
