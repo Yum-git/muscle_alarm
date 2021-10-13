@@ -155,9 +155,16 @@ const Pose = () => {
     }
 
     const poseNetSave  = () => {
-        axios.post("http://localhost:3000/save", {
-            "PoseName": "Squat",
-            "PoseCount": parseInt(poseCount, 10)
+        const now = new Date();
+        const date_ = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDay();
+        axios.post("http://localhost:8000/result", {
+            "result_name": "Squat",
+            "result_count": parseInt(poseCount, 10),
+            "result_time": date_
+        }, {
+            headers: {
+                Authorization: `Bearer aiueo`,
+            }
         }).then(
             response => {
                 console.log(response.data);
@@ -176,7 +183,7 @@ const Pose = () => {
     const poseOutput = (error, results) => {
         console.log(error);
         try{
-            console.log(results[0]);
+            // console.log(results[0]);
             if(poseState === results[0].label){
                 setPoseTimeState((poseTimeState) => poseTimeState + 20);
 
@@ -239,7 +246,7 @@ const Pose = () => {
                         <Button onClick={poseNetPlay} variant="outlined" color="secondary">
                             Start Count
                         </Button>
-                        <Button onClick={poseNetPlay} variant="outlined" color="secondary">
+                        <Button onClick={poseNetSave} variant="outlined" color="secondary">
                             Save Count
                         </Button>
                     </Grid>
