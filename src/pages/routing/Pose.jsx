@@ -8,6 +8,7 @@ import {Button, CircularProgress, Typography} from "@material-ui/core";
 import {useWindowSize} from "react-use";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import Paper from "@material-ui/core/Paper";
 
 let classifier;
 let poses;
@@ -24,7 +25,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         textAlign: 'center',
-    }
+    },
+    paper: {
+        padding: theme.spacing(2),
+        margin: theme.spacing(2),
+        textAlign: 'center',
+    },
 }));
 
 
@@ -228,10 +234,19 @@ const Pose = () => {
         <div className="Pose-Container">
             <div className={classes.root}>
                 <Grid container alignItems="center" justify="center" spacing={2}>
-                    <Grid item xs={12}>
-                        <Typography variant="h1">
-                            {parseInt(poseCount, 10)} {parseInt(poseCount, 10) * 0.4}kcal
-                        </Typography>
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
+                            <h1>
+                                {parseInt(poseCount, 10)} 回
+                            </h1>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Paper className={classes.paper}>
+                            <h1>
+                                {Math.floor(parseInt(poseCount, 10) * 0.4 * 10) / 10}kcal
+                            </h1>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12}>
                         <div className="wrapper">
