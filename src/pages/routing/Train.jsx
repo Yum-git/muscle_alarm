@@ -217,22 +217,24 @@ const Train = () => {
                     </Grid>
                     <Grid item xs={12}>
                         <Button onClick={poseNetPlay} variant="outlined" color="secondary">
-                            Start PoseNet
+                            1. Start PoseNet
                         </Button>
                         <Button onClick={() => dataAddPlay('Up')} variant="outlined" color="primary">
-                            Up
+                            2a. Up
                         </Button>
                         <Button onClick={() => dataAddPlay('Down')} variant="outlined" color="primary">
-                            Down
+                            2b. Down
                         </Button>
+                    </Grid>
+                    <Grid item xs={12}>
                         <Button onClick={dataSave} variant="outlined" color="primary">
-                            DataSave
+                            3. DataSave
                         </Button>
                         <Button onClick={dataLoad} variant="outlined" color="primary">
-                            DataLoad
+                            4. DataLoad
                         </Button>
                         <Button onClick={dataTraining} variant="outlined" color="primary">
-                            DataTraining
+                            5. DataTraining
                         </Button>
                     </Grid>
                 </Grid>
