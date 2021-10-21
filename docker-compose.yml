@@ -6,7 +6,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/usr/src/app
-    command: sh -c "cd workplace && yarn start"
+    command: sh -c "cd muscle_app && yarn start"
     ports:
       - "3000:3000"
     tty: true
+    stdin_open: true
