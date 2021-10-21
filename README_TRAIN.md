@@ -17,5 +17,11 @@
 
 - 撮影されている時は **training**  されていない時は**not training**と表示されています
 
+### Docker-composeで動かす際（実験中）
+0. ```git clone https://github.com/Yum-git/muscle_app.git```
+1. ```cd muscle_app```
+2. ```docker-compose build```
+3. ```docker-compose up -d```
+
 ### Option. データ学習方法
 作成中...
