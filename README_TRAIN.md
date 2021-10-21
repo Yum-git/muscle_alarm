@@ -20,8 +20,9 @@
 ### Dockerで動かす際
 0. ```git clone https://github.com/Yum-git/muscle_app.git```
 1. ```cd muscle_app```
-2. ```docker build -t muscle_app```
+2. ```docker build . -t muscle_app```
 3. ```docker run -it -p 3000:3000 --name muscle_container muscle_app```
+4. ```(２回目の起動時) docker start muscle_container```
 
 ### Docker-composeで動かす際（未完成）
 0. ```git clone https://github.com/Yum-git/muscle_app.git```
