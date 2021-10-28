@@ -189,7 +189,7 @@ const Pose = () => {
     const poseOutput = (error, results) => {
         console.log(error);
         try{
-            // console.log(results[0]);
+            console.log(results);
             if(poseState === results[0].label){
                 setPoseTimeState((poseTimeState) => poseTimeState + 20);
 
