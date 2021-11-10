@@ -60,12 +60,21 @@ const Pose = (props) => {
     // 幅のリサイズ用変数　保留
     // const [aspectRation, setAspectRation] = useState(1.25);
     // const { width, height } = useWindowSize();
+
+    // 描画初期
+    const CanvasClear = (poses) => {
+        const context = canvasRef.current.getContext('2d');
+
+        // 初期化
+        context.clearRect(0, 0, context.canvas.clientWidth, context.canvas.clientHeight);
+    }
+
     // 描画関数
     const CanvasOutput = (poses) => {
         const context = canvasRef.current.getContext('2d');
 
         // 初期化
-        context.clearRect(0, 0, context.canvas.clientWidth, context.canvas.clientHeight);
+        // context.clearRect(0, 0, context.canvas.clientWidth, context.canvas.clientHeight);
 
         // point描画
         try{
@@ -191,11 +200,10 @@ const Pose = (props) => {
     // ポーズ出力
     const poseOutput = (error, results) => {
         try{
-            console.log(results);
             if(poseState === results[0].label){
-                setPoseTimeState((poseTimeState) => poseTimeState + 20);
+                setPoseTimeState((poseTimeState) => poseTimeState + 25);
 
-                if(500 < poseTimeState && poseType !== poseState){
+                if(300 < poseTimeState && poseType !== poseState){
                     setPoseCount((poseCount) => poseCount + 0.5);
                     setPoseType(poseState);
 
@@ -204,6 +212,7 @@ const Pose = (props) => {
                     }
                 }
             }else{
+                console.log(poseTimeState);
                 setPoseTimeState(0);
             }
             setPoseState(results[0].label);
@@ -226,11 +235,12 @@ const Pose = (props) => {
     // }, [width, height]);
 
     useInterval(() => {
+        CanvasClear(poses);
         if(loaded){
             // canvasに描画する関数
             CanvasOutput(poses);
         }
-    }, 20);
+    }, 25);
 
     return(
         <div className="Pose-Container">
