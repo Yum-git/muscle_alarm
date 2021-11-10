@@ -168,7 +168,7 @@ const Train = () => {
     // データ学習
     const dataTraining = () => {
         // 学習データロード
-        brain.loadData('save/save_data.json.json', () => {
+        brain.loadData('save/pushup.json', () => {
             console.log('Load json!');
 
             // 正則化&トレーニング

@@ -74,7 +74,9 @@ const Main = () => {
                     <Grid item xs={6} sm={5}>
                         <Link to={{
                             pathname: '/pose',
-                            input_pose: 'squat'
+                            state: {
+                                input_pose: 'squat'
+                            }
                         }} className={classes.LinkATag}>
                             <Card className={classes.card}>
                                 <CardMedia
@@ -92,7 +94,9 @@ const Main = () => {
                     <Grid item xs={6} sm={5}>
                         <Link to={{
                             pathname: '/pose',
-                            input_pose: 'pushup'
+                            state: {
+                                input_pose: 'pushup'
+                            }
                         }} className={classes.LinkATag}>
                             <Card className={classes.card}>
                                 <CardMedia
