@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Pose = () => {
+const Pose = (props) => {
     // css in js
     const classes = useStyles();
 
@@ -50,13 +50,16 @@ const Pose = () => {
     const [poseCount, setPoseCount] = useState(0.0);
     const [poseType, setPoseType] = useState('default');
 
+    const model_path = `model/${props.location.state.input_pose}/model.json`;
+    const metadata_path = `model/${props.location.state.input_pose}/model_meta.json`;
+    const weights_path = `model/${props.location.state.input_pose}/model.weights.bin`;
+
     // プッシュ時の効果音 pathで指定
     const push_sound = new Audio('audio/push_2.mp3');
 
     // 幅のリサイズ用変数　保留
     // const [aspectRation, setAspectRation] = useState(1.25);
     // const { width, height } = useWindowSize();
-
     // 描画関数
     const CanvasOutput = (poses) => {
         const context = canvasRef.current.getContext('2d');
@@ -150,9 +153,9 @@ const Pose = () => {
         brain = ml5.neuralNetwork(options);
 
         const modelInfo = {
-            model: 'model/squat_add/model.json',
-            metadata: 'model/squat_add/model_meta.json',
-            weights: 'model/squat_add/model.weights.bin'
+            model: model_path,
+            metadata: metadata_path,
+            weights: weights_path
         };
 
         brain.load(modelInfo, () => {
@@ -164,7 +167,7 @@ const Pose = () => {
         const now = new Date();
         const date_ = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDay();
         axios.post("http://localhost:8000/result", {
-            "result_name": "Squat",
+            "result_name": props.location.state.input_pose,
             "result_count": parseInt(poseCount, 10),
             "result_time": date_
         }, {
@@ -187,9 +190,8 @@ const Pose = () => {
 
     // ポーズ出力
     const poseOutput = (error, results) => {
-        console.log(error);
         try{
-            // console.log(results[0]);
+            console.log(results);
             if(poseState === results[0].label){
                 setPoseTimeState((poseTimeState) => poseTimeState + 20);
 

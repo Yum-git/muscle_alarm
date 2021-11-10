@@ -30,22 +30,28 @@ const Graph = () => {
     };
 
     const CountGet = async (PoseName) => {
-         await axios.get("http://localhost:8000/result", {
-             params:{
-                 "pose": PoseName
-             },
-             headers: {
-                 Authorization: `Bearer aiueo`,
-             }
-        }).then(
-            response => {
-                setData(response.data.results);
-            }
-        ).catch(
-            err => {
-                console.log(err);
-            }
-        );
+        const uid = localStorage.getItem('uid');
+
+        if(uid != null){
+            const header_token = "Bearer " + uid;
+
+            await axios.get("http://localhost:8000/result", {
+                params:{
+                    "pose": PoseName
+                },
+                headers: {
+                    Authorization: header_token,
+                }
+            }).then(
+                response => {
+                    setData(response.data.results);
+                }
+            ).catch(
+                err => {
+                    console.log(err);
+                }
+            );
+        }
     };
 
     useEffect(() => {

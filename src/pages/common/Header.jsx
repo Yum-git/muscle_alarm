@@ -24,6 +24,12 @@ const responseGoogle = (response) => {
     console.log(response);
 }
 
+const successGoogle = (response) => {
+    const uid = response.getAuthResponse().id_token;
+
+    localStorage.setItem('uid', uid);
+}
+
 
 const Header = () => {
     const classes = useStyles();
@@ -35,7 +41,7 @@ const Header = () => {
                 </Typography>
                 <GoogleLogin clientId={process.env.REACT_APP_CLIENT_ID}
                              buttonText="Login"
-                             onSuccess={responseGoogle}
+                             onSuccess={successGoogle}
                              onFailure={responseGoogle}
                              isSignedIn={true}
                              cookiePolicy={'single_host_origin'}
