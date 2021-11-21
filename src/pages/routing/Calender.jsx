@@ -14,7 +14,8 @@ import {
     ConfirmationDialog
 } from '@devexpress/dx-react-scheduler-material-ui';
 import {makeStyles} from "@material-ui/core/styles";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,17 +44,86 @@ const Calender = () => {
 
     const commitChanges = ({added, changed, deleted}) => {
         if(added){
-            setData([...data, { id: data[data.length - 1].id + 1, ...added }]);
+            console.log(added);
+            planAdd(added);
+            planRead();
+            // setData([...data, { id: data[data.length - 1].id + 1, ...added }]);
         }
 
         if(changed){
-            setData(data.map(appointment => (changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment)));
+            console.log(Object.keys(changed)[0]);
+            console.log(changed[Object.keys(changed)[0]]);
+            // setData(data.map(appointment => (changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment)));
         }
 
         if(deleted){
-            setData(data.filter(appointment => appointment.id !== deleted));
+            console.log(deleted);
+            planDelete(deleted);
+            planRead();
+            // setData(data.filter(appointment => appointment.id !== deleted));
         }
     }
+
+    const planAdd = (added) => {
+        axios.post("http://localhost:8000/plan", {
+            "plan_name": added.title,
+            "start_time": added.startDate,
+            "end_time": added.endDate,
+            "plan_notes": added.notes
+        }, {
+            headers: {
+                Authorization: `Bearer aiueo`,
+            }
+        }).then(
+            response => {
+                console.log(response.data.results);
+            }
+        ).catch(
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    const planRead = () => {
+        axios.get("http://localhost:8000/plan", {
+            headers: {
+                Authorization: `Bearer aiueo`,
+            }
+        }).then(
+            response => {
+                setData(response.data.results);
+            }
+        ).catch(
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    const planDelete = (deleted) => {
+        axios.delete("http://localhost:8000/plan", {
+            data: {
+                id_: deleted
+            },
+            headers: {
+                Authorization: `Bearer aiueo`,
+            }
+        }).then(
+            response => {
+                console.log(response.data.results);
+                setData(response.data.results);
+            }
+        ).catch(
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    useEffect(() => {
+        planRead();
+    }, [])
 
     return(
         <div className="Graph-Container">
@@ -73,10 +143,7 @@ const Calender = () => {
                                     onCommitChanges={commitChanges}
                                 />
                                 <IntegratedEditing />
-                                <WeekView
-                                    startDayHour={9}
-                                    endDayHour={19}
-                                />
+                                <WeekView />
                                 <Toolbar />
                                 <DateNavigator />
                                 <TodayButton />
