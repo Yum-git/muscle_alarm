@@ -131,17 +131,21 @@ const Main = () => {
                         </Link>
                     </Grid>
                     <Grid item xs={6} sm={5}>
-                        <Card className={classes.card}>
-                            <CardMedia
-                                component="img"
-                                image="png/setting.png"
-                            />
-                            <CardContent>
-                                <Typography variant="h6">
-                                    Setting
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                        <Link to={{
+                            pathname: '/calender'
+                        }} className={classes.LinkATag}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    component="img"
+                                    image="png/calender.png"
+                                />
+                                <CardContent>
+                                    <Typography variant="h6">
+                                        Calender
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     </Grid>
                 </Grid>
             </div>
