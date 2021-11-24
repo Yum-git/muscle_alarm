@@ -40,7 +40,7 @@ const Graph = () => {
                     "pose": PoseName
                 },
                 headers: {
-                    Authorization: header_token,
+                    Authorization: `Bearer aiueo`,
                 }
             }).then(
                 response => {

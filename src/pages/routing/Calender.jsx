@@ -44,24 +44,21 @@ const Calender = () => {
 
     const commitChanges = ({added, changed, deleted}) => {
         if(added){
-            console.log(added);
             planAdd(added);
-            planRead();
-            // setData([...data, { id: data[data.length - 1].id + 1, ...added }]);
         }
 
         if(changed){
-            console.log(Object.keys(changed)[0]);
-            console.log(changed[Object.keys(changed)[0]]);
-            // setData(data.map(appointment => (changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment)));
+            let change_data = changed[Object.keys(changed)[0]];
+            change_data.id = Number(Object.keys(changed)[0]);
+
+            planChange(change_data);
         }
 
         if(deleted){
-            console.log(deleted);
             planDelete(deleted);
-            planRead();
-            // setData(data.filter(appointment => appointment.id !== deleted));
         }
+
+        planRead();
     }
 
     const planAdd = (added) => {
@@ -84,6 +81,29 @@ const Calender = () => {
             }
         );
     }
+
+    const planChange = (changed) => {
+        axios.put("http://localhost:8000/plan", {
+            "id_": changed.id,
+            "plan_name": changed.title,
+            "start_time": changed.startDate,
+            "end_time": changed.endDate,
+            "plan_notes": changed.notes
+        }, {
+            headers: {
+                Authorization: `Bearer aiueo`,
+            }
+        }).then(
+            response => {
+                console.log(response.data.results);
+            }
+        ).catch(
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
 
     const planRead = () => {
         axios.get("http://localhost:8000/plan", {
