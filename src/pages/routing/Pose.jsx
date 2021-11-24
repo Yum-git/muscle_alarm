@@ -260,7 +260,7 @@ const Pose = (props) => {
                             </h1>
                         </Paper>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <div className="wrapper">
                             {!loaded  &&
                             <CircularProgress className="load-progress" />
@@ -268,6 +268,13 @@ const Pose = (props) => {
                             <video id="video" ref={videoRef} height="100%" width="100%"  />
                             <canvas className="canvas" ref={canvasRef}  />
                         </div>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/SFnfYPktYBU"
+                                title="YouTube video player" frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen>
+                        </iframe>
                     </Grid>
                     <Grid item xs={12}>
                         <Button onClick={poseNetPlay} variant="outlined" color="secondary">
