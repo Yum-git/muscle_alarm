@@ -1,0 +1,17 @@
+@font-face{
+  font-family: 'Myfont';
+  src: url("../font/cinecaption226.ttf");
+}
+
+.ClockPaper{
+  // background: linear-gradient(90deg,#0e0f0f 0,#1f2021 30%,#2b2d2e 57%,#2d2f30 64%,#2d2f30);
+  h1{
+    color: black;
+    font-family: Myfont;
+    letter-spacing: 0.3em
+  }
+}
+
+.LinkATag{
+  text-decoration: none;
+}
