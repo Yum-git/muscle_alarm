@@ -1,10 +1,14 @@
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import {Breadcrumbs, Link, Paper, Tab, Tabs, Typography} from "@material-ui/core";
-import {ArgumentAxis, Chart, LineSeries, ValueAxis, BarSeries} from "@devexpress/dx-react-chart-material-ui";
+import {Paper, Tab, Tabs} from "@material-ui/core";
+import {ArgumentAxis, Chart, LineSeries, ValueAxis, BarSeries, Legend, Title, Tooltip} from "@devexpress/dx-react-chart-material-ui";
 import React, {useEffect, useState} from "react";
-import {Animation} from "@devexpress/dx-react-chart";
+import {Animation, EventTracker} from "@devexpress/dx-react-chart";
 import axios from "axios";
+
+const format = () => tick => tick;
+const titleStyle = { margin: '20px', textAlign: "center" };
+const TitleText = props => <Title.Text {...props} style={titleStyle} />;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,7 +36,7 @@ const Graph = () => {
     const CountGet = async (PoseName) => {
         const uid = localStorage.getItem('uid');
 
-        if(uid != null){
+        if(true){
             const header_token = "Bearer " + uid;
 
             await axios.get("http://localhost:8000/result", {
@@ -85,19 +89,29 @@ const Graph = () => {
                     <Grid item xs={12}>
                         <Paper>
                             <Chart data={data} >
-                                <ArgumentAxis />
+                                <ArgumentAxis
+                                    tickFormat={format}
+                                />
                                 <ValueAxis />
 
                                 <BarSeries
+                                    name="回数"
                                     valueField="value"
                                     argumentField="argument"
                                 />
                                 <LineSeries
+                                    name="過去平均"
                                     valueField="value"
                                     argumentField="argument"
                                 />
 
-                                <Animation />
+                                <Legend />
+                                <Title
+                                    text="運動チャート"
+                                    textComponent={TitleText}
+                                />
+                                <EventTracker />
+                                <Tooltip />
                             </Chart>
                         </Paper>
                     </Grid>
