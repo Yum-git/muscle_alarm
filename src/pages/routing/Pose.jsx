@@ -5,7 +5,6 @@ import useInterval from "@use-it/interval";
 import 'styles/pose.scss';
 import {makeStyles} from "@material-ui/core/styles";
 import {Button, CircularProgress, Typography} from "@material-ui/core";
-import {useWindowSize} from "react-use";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import Paper from "@material-ui/core/Paper";
@@ -174,11 +173,16 @@ const Pose = (props) => {
 
     const poseNetSave  = () => {
         const now = new Date();
-        const date_ = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDay();
+
+        const year_ = now.getFullYear();
+        const month_ = ("0" + (now.getMonth() + 1)).slice(-2);
+        const date_ = ("0" + now.getDate()).slice(-2);
+        const now_date = year_ + "-" + month_ + "-" + date_
+        console.log(now_date);
         axios.post("http://localhost:8000/result", {
             "result_name": props.location.state.input_pose,
             "result_count": parseInt(poseCount, 10),
-            "result_time": date_
+            "result_time": now_date
         }, {
             headers: {
                 Authorization: `Bearer aiueo`,
@@ -223,7 +227,12 @@ const Pose = (props) => {
     }
 
     useEffect(() => {
+        let abortCtrl = new AbortController();
         videoPlay();
+
+        return () => {
+            abortCtrl.abort();
+        }
     }, []);
 
     // useEffect(() => {
