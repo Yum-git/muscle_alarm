@@ -42,20 +42,20 @@ const Calender = () => {
 
     const [currentDate, setCurrentDate] = useState(now);
 
-    const commitChanges = ({added, changed, deleted}) => {
+    const commitChanges = async ({added, changed, deleted}) => {
         if(added){
-            planAdd(added);
+            await planAdd(added);
         }
 
         if(changed){
             let change_data = changed[Object.keys(changed)[0]];
             change_data.id = Number(Object.keys(changed)[0]);
 
-            planChange(change_data);
+            await planChange(change_data);
         }
 
         if(deleted){
-            planDelete(deleted);
+           await planDelete(deleted);
         }
 
         planRead();
