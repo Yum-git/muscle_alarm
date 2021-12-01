@@ -75,7 +75,7 @@ const Main = () => {
                         <Link to={{
                             pathname: '/pose',
                             state: {
-                                input_pose: 'squat',
+                                input_pose: 'Squat',
                                 youtube_url: 'https://www.youtube.com/embed/SFnfYPktYBU'
                             }
                         }} className={classes.LinkATag}>
@@ -96,7 +96,7 @@ const Main = () => {
                         <Link to={{
                             pathname: '/pose',
                             state: {
-                                input_pose: 'pushup',
+                                input_pose: 'Pushup',
                                 youtube_url: 'https://www.youtube.com/embed/k4fsFKCp5iU'
                             }
                         }} className={classes.LinkATag}>
